@@ -1,0 +1,122 @@
+#!/bin/bash
+
+# Robô capaz de executar comandos e entender pedidos do usuário.
+# Desenvolvido em ShellScript.
+# By Cyberia.
+
+echo -e "\x1B[35m ⠀⠀⠀⠀⠀⠀⠀    ⠀⠀⠀⠀⠀⠀⠀ \x1B[0m"
+echo -e "\x1B[35m⠀ ⠀⠀⠀⠀⠀⠀    ⠀⠀⠀⠀⠀⠀⠀ \x1B[0m"
+echo -e "\x1B[35m⠀ ⠀⠀⠀⣀⠤⠤⠤⠤⠤⠤⠤⠤⣀⠀⠀⠀ ⠀\x1B[0m"
+echo -e "\x1B[35m⠀ ⠀⢠⠎⠁⣀⣀⣀⣀⣀⣀⣀⣀⠈⠳⡄⠀⠀ \x1B[0m"
+echo -e "\x1B[35m ⢀⡠⡏⢀⠞⠁⠀⠀⠀⠀⠀⠀⠈⢳⡀⢱⢄ ⠀ ミスター・ロボット\x1B[0m\x1B[0m"
+echo -e "\x1B[35m ⣾⠀⡇⢸⠀⠰⣿⠆⠀⠀⠰⣿⠆⠀⡇⢸⠀⣧  Greetings, I'm here to help\x1B[0m"
+echo -e "\x1B[35m ⠹⡀⣇⠸⡄⠀ ⠰⢤⡤⠂ ⠀⢠⠃⡸⢀⠇  you with whatever you need!\x1B[0m\x1B[0m"
+echo -e "\x1B[35m   ⠙⢆⠙⠢⠤⠤⠤⠤⠤⠤⠔⠋⡰⠋   \x1B[0m"
+echo -e "\x1B[35m ⠀ ⠀⠀⠙⠒⠢⠤⠤⠤⠤⠖⠒⠉⠀⠀  ⠀ by Cyberia.\x1B[0m"
+echo -e "\x1B[35m ⠀  ⠀⣠⠚⠉⠉⠉⠉⠉⠉⠳⣄⠀  ⠀ \x1B[0m"
+echo -e "\x1B[35m ⠀⠀  ⢇⡀⠀⠀⠀⠀⠀⠀⢀⡸ ⠀⠀ ⠀\x1B[0m"
+echo -e "\x1B[35m ⠀⠀⠀⠀⠀⠈⠙⠒⠒⠒⠒⠋⠁⠀⠀⠀⠀⠀ \n\x1B[0m"
+
+echo -e "\x1B[35m➜ Fale comigo!\x1B[0m"
+
+Chatbot(){
+
+        case $RSP in
+                *ola*|oi*|*saud*|*olá*|*eae*|*hell*|*hi*)
+                        Saudacoes=('Olá humano!' 'Saudações.' 'Bom dia, boa tarde, boa noite!' 'Olá, como é bom te ver!')
+                        echo -e "\x1B[35m➜ ${Saudacoes[$((RANDOM%4))]}\x1B[0m" && Interaction
+                ;;
+
+                *namora*|*fican*|*casado*)
+                        EstadoCivil=('Eu não namoro, sou uma Inteligência Artificial.' 'Sou um robô, não me relaciono.' 'Acho que isso violaria as leis da robótica.' 'Eu não quero um compromisso, estou aqui apenas para te ajudar.')
+                        echo -e "\x1B[35m➜ ${EstadoCivil[$((RANDOM%4))]}\x1B[0m" && Interaction
+                ;;
+
+                *manh*|*tard*|*noit*|*hor*)
+                        HORA=`date +%H`
+                        if [ $HORA -ge 01 ] && [ $HORA -lt 12 ]; then
+                                echo -e "\x1B[35m➜ Na sua região, são `date +%H:%M` da manhã.\x1B[0m"
+                        elif [ $HORA -ge 12 ] && [ $HORA -lt 18 ]; then
+                                echo -e "\x1B[35m➜ Na sua região, são `date +%H:%M` da tarde.\x1B[0m"
+                        else
+                                echo -e "\x1B[35m➜ Na sua região, são `date +%H:%M` da noite.\x1B[0m"
+                        fi
+                        Interaction
+                ;;
+
+                *criador*|*desenvolv*|*criou*|*criado*)
+                        Criadora=('Fui desenvolvido por uma estudante de Defesa Cibernética, Isabelle (RM93637).' 'Fui desenvolvido por uma aluna de Cybersecurity, Isabelle (RM93637).' 'Isabelle (RM93637), uma aluna de Cybersecurity, é minha criadora.' 'Conheça minha criadora, Isabelle (RM93637)!')
+                        echo -e "\x1B[35m➜ ${Criadora[$((RANDOM%4))]}\x1B[0m" && Interaction
+                ;;
+
+                *vers*|*update*|*atualiz*|*upgrade*|*evolua*|*att*)
+                        Update=('Checando listas de repositórios, aguarde um momento...' 'Buscando por atualizações...' 'Procurando atualizações do sistema...' 'Estou em busca de atualizações, um instante...')
+                        echo -e "\x1B[35m➜ ${Update[$((RANDOM%4))]}\x1B[0m"
+                        sudo apt update > /dev/null && sudo apt upgrade -y > /dev/null
+                        Upgrade=('O sistema está atualizado!' 'Todos os pacotes estão atualizados.' 'Todas as aplicações estão atualizadas.' 'Todos os aplicativos se encontram na última versão.')
+                        echo -e "\x1B[35m➜ ${Upgrade[$((RANDOM%4))]}\x1B[0m" && Interaction
+                ;;
+
+                *vuln*|*nmap*|*portscan*|*portas*|*scan*)
+                        echo -e "\x1B[35m➜ Informe o host que será escaneado: \x1B[0m" && read -p "➜ " IPHOST
+                        echo $IPHOST | egrep '(\b25[0-5]|\b2[0-4][0-9]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}' > /dev/null && VALIDO="1"
+                                if [ $VALIDO == "1" ]; then
+                                        nmap -T5 $IPHOST
+                                        Scan=("PortScan no alvo $IPHOST efetuado com sucesso!" "Varredura no host $IPHOST concluída com sucesso!" "O host $IPHOST foi escaneado com sucesso!" "NMAP executado com êxito no host $IPHOST!")
+                                        echo -e "\x1B[35m➜ ${Scan[$((RANDOM%4))]}\x1B[0m"
+                                else
+                                        echo -e "\x1B[35m➜ O endereço IP “$IPHOST” não é válido.\x1B[0m"
+                                fi
+                        Interaction
+                ;;
+                *ip*|*add*|*public*|*extern*)
+                        echo -e "\x1B[35m➜ O endereço IP público da sua máquina é $(curl -s https://ifconfig.me).\x1B[0m" && Interaction
+                ;;
+
+                *delet*|*rm*|*remov*|*exclu*)
+                        echo -e "\x1B[31m➜ Cuidado, esse comando é muito perigoso! Para mais informações, digite “ajuda”.\x1B[0m"       
+                        echo -e "\x1B[35m➜ Digite o nome do arquivo que você deseja deletar recursivamente do seu sistema: \x1B[0m" && read -p "➜ " FILE
+                        cd / && find -name *"$FILE"* -exec rm -rf {} \; 2> /dev/null
+                        echo -e "\x1B[35m➜ Todos os arquivos e diretórios do sistema com “$FILE” no nome foram excluídos com sucesso.\x1B[0m" && Interaction
+                ;;
+
+                *ajud*|*help*|*tuto*|*guia*|*guide*)
+                        Help=('Aqui está alguns comandos válidos:' 'Aqui está o tutorial de utilização do programa:' 'Lista de comandos que compreendo:' 'Aqui está um guia para se comunicar comigo:')
+                        echo -e "\x1B[35m➜ ${Help[$((RANDOM%4))]}\x1B[0m"
+                        echo -e "\n\x1B[35m+*+ Você namora?\x1B[0m                               \x1B[35mMr.Roboto\x1B[0m falará sobre seu estado civil."
+                        echo -e "\x1B[35m+*+ Que horas são?\x1B[0m                               \x1B[35mMr.Roboto\x1B[0m irá informar o horário na sua região."
+                        echo -e "\x1B[35m+*+ Quem te desenvolveu?\x1B[0m                         \x1B[35mMr.Roboto\x1B[0m dirá um pouco mais sobre sua desenvolvedora."
+                        echo -e "\x1B[35m+*+ O sistema está atualizado?\x1B[0m                   \x1B[35mMr.Roboto\x1B[0m irá conferir e atualizar os pacotes do sistema."
+                        echo -e "\x1B[35m+*+ Quais vulnerabilidades existem no host X?\x1B[0m    \x1B[35mMr.Roboto\x1B[0m fará uma varredura dos serviços rodando no alvo."
+                        echo -e "\x1B[35m+*+ Qual é o meu IP?\x1B[0m                             \x1B[35mMr.Roboto\x1B[0m irá informar o seu endereço IP público."
+                        echo -e "\x1B[35m+*+ Deletar recursivamente\x1B[0m                       \x1B[35mMr.Roboto\x1B[0m irá deletar arquivos de maneira recursiva, \x1B[1;31mCUIDADO\x1B[0m. Ações não poderão ser desfeitas."
+                        echo -e "\x1B[35m+*+ Preciso de ajuda\x1B[0m                             \x1B[35mMr.Roboto\x1B[0m exibirá esse manual de ajuda."
+                        echo -e "\x1B[35m+*+ Sair\x1B[0m                                         \x1B[35mMr.Roboto\x1B[0m irá encerrar o chatbot."
+                        echo
+                        Interaction
+                ;;
+
+                *sair*|*saí*|*quit*|*kill*|*bye*|*tchau*)
+                        Bye=('Até mais!' 'Te vejo outro dia!' 'Até logo!' 'Até depois!')
+                        echo -e "\x1B[35m➜ ${Bye[$((RANDOM%4))]}\x1B[0m"
+                        exit && Interaction
+                ;;
+
+                *clear*|*limpar*)
+                        clear && Interaction
+                ;;
+
+                *)
+                        Unknown=('Não sei nada sobre isso.' 'Desculpe, não entendi.' 'Comando desconhecido, digite “ajuda” para mais informações.' 'Não tenho conhecimento sobre isso.')
+                        echo -e "\x1B[35m➜ ${Unknown[$((RANDOM%4))]}\x1B[0m" && Interaction
+                ;;
+        esac
+
+}
+
+Interaction(){
+        read -p "➜ " RSP
+        Chatbot
+}
+
+Interaction
