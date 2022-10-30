@@ -69,7 +69,7 @@ Chatbot(){
                                 fi
                         Interaction
                 ;;
-                *ip*|*add*|*public*|*extern*)
+                *IP*|*ip*|*add*|*public*|*extern*)
                         echo -e "\x1B[35m➜ O endereço IP público da sua máquina é $(curl -s https://ifconfig.me).\x1B[0m" && Interaction
                 ;;
 
